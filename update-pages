@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -ex
+
+die() {
+    echo "$@"
+    exit 1
+}
+
+require() {
+    type -p $1 || die Missing prerequisite: $1
+}
+
+require git
+require pip
+
+type -p dir2pi || pip install pip2pi
+
+top="$(git rev-parse --show-toplevel 2>/dev/null)" ||
+    top="$(cd "$(dirname "$0")" && pwd)"
+
+cd "$top"
+
+dir2pi -S wheels
+git subtree push --prefix wheels/simple origin gh-pages

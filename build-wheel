@@ -51,7 +51,13 @@ git clone -b ray-$RAY https://github.com/ray-project/ray
     do patch -p1 < $patch
     done
 
+# build dashboard frontend
+cd /ray/python/ray/new_dashboard/client
+npm install
+npm ci
+npm run build
+
 # build wheel
-cd ray/python/
+cd /ray/python/
 python setup.py bdist_wheel
 mv -v dist/ray*whl $wheels

@@ -1,0 +1,11 @@
+--- a/ray/python/setup.py
++++ b/ray/python/setup.py
+@@ -120,7 +120,7 @@
+     "dm_tree",
+     "gym",
+     "lz4",
+-    "opencv-python-headless<=4.3.0.36",
++    "opencv-python-headless",
+     "pyyaml",
+     "scipy",
+ ]

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+set -ex
+
+# ensure $0 is an absolute path
+[ / = "${0::1}" ] || exec "$0" "$@"
+
+self=${0##*/}
+wheels=/wheels
+patches=/patches
+
+# run ourselves in a container, unless already inside
+[ /$self = "$0" ] ||
+    {
+        ! [ - = "${1::1}" ] ||
+            {  # clue in the clueless
+                echo Usage: $self [RAY_VERSION [DOCKER_IMAGE]]
+                exit 1
+            }
+        # spawn container
+        exec docker run \
+            --rm \
+            --tty \
+            --interactive \
+            --volume "$0":/$self \
+            --volume "$PWD$wheels":$wheels \
+            --volume "$PWD$patches":$patches \
+            --env RAY=${1:-1.5.1} \
+            python:${2:-3.8} /$self
+    }
+
+# inside container, upgrade pip
+pip install --upgrade pip
+
+# don't bother rebuilding existing wheels
+! pip download --no-deps ray==$RAY ||
+    {
+        ls -l ray*whl
+        exit 0
+    }
+
+# prep bazel
+apt-get update
+apt-get install -y npm
+npm install -g @bazel/bazelisk
+
+# fetch and optionally patch Ray
+git clone -b ray-$RAY https://github.com/ray-project/ray
+! [ -d $patches/$RAY ] ||
+    for patch in $patches/$RAY/*.patch
+    do patch -p1 < $patch
+    done
+
+# build wheel
+cd ray/python/
+python setup.py bdist_wheel
+mv -v dist/ray*whl $wheels

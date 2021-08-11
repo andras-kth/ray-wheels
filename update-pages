@@ -23,3 +23,4 @@ cd "$top"
 
 dir2pi -S wheels
 git subtree push --prefix wheels/simple origin gh-pages
+rm -fr wheels/simple

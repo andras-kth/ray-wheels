@@ -32,4 +32,4 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
 
 To use a non-standard wheel from this repo, but fall back to PyPi on platforms
 where standard wheels are available, set `--extra-index-url` or `PIP_EXTRA_INDEX_URL`
-to `https://github.com/mehes-kth/ray-wheels/wheels`.
+to `https://mehes-kth.github.io/ray-wheels`.

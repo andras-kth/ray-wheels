@@ -24,7 +24,7 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
       * Python 3.8 is used by default
 1.  [OPTIONAL] Update the barebones PyPi repo under `wheels`
     ```sh
-    dir2pi wheels
+    dir2pi -S wheels
     ```
     - This requires the `pip2i` package (installed as `pip install pip2pi`)
 1.  [OPTIONAL] file a [Pull Request](https://github.com/mehes-kth/ray-wheels/pulls)

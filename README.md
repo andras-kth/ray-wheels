@@ -4,23 +4,23 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
 
 ## Modus Operandi
 
-1.  Pick Ray version (say, `M.m.p`)
+1.  Pick Ray version (say, `R.r.i`)
     - the latest Ray version (`1.5.1` at the time of writing) is used by default
-1.  [OPTIONAL] Add patches, if any, under `patches/M.m.p`
+1.  [OPTIONAL] Add patches, if any, under `patches/R.r.i`
 1.  Build the wheel (the resulting wheel, if produced, ends up under `wheels`)
     - latest
       ```sh
       ./build-wheel
       ```
-    - Ray `M.m.p`
+    - Ray `R.r.i`
       ```sh
-      ./build-wheel M.m.p
+      ./build-wheel R.r.i
       ```
-    - Ray `M.m.p` on Python `MM.mm`
+    - Ray `R.r.i` on Python `P.p`
       ```sh
-      ./build-wheel M.m.p MM.mm
+      ./build-wheel R.r.i P.p
       ```
-      * Passing an explicit Python version (e.g. `MM.mm`) is OPTIONAL
+      * Passing an explicit Python version (e.g. `P.p`) is OPTIONAL
       * Python 3.8 is used by default
 1.  [OPTIONAL] Update the barebones PyPi repo under `wheels`
     ```sh

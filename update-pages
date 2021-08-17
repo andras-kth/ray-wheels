@@ -21,11 +21,11 @@ top="$(git rev-parse --show-toplevel 2>/dev/null)" ||
 
 cd "$top"
 
-cp -va wheels wheels.
 stashed=$(git stash)
+cp -va wheels wheels.
 git switch gh-pages
 dir2pi -S wheels.
-cp -va wheels./simple/ .
+cp -va wheels./simple/* .
 rm -fr wheels.
 git add .
 git commit -am Update\ Pages

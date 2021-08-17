@@ -21,6 +21,14 @@ top="$(git rev-parse --show-toplevel 2>/dev/null)" ||
 
 cd "$top"
 
-dir2pi -S wheels
-git subtree push --prefix wheels/simple origin gh-pages
-rm -fr wheels/simple
+cp -va wheels wheels.
+stashed=$(git stash)
+git switch gh-pages
+dir2pi -S wheels.
+cp -va wheels./simple/ .
+rm -fr wheels.
+git add .
+git commit -am Update\ Pages
+git push
+git switch main
+[ "$stashed" = "No local changes to save" ] || git stash pop

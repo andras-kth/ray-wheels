@@ -25,7 +25,7 @@ patches=/patches
             --volume "$0":/$self \
             --volume "$PWD$wheels":$wheels \
             --volume "$PWD$patches":$patches \
-            --env RAY=${1:-1.5.1} \
+            --env RAY=${1:-1.5.2} \
             python:${2:-3.8} /$self
     }
 
@@ -39,9 +39,9 @@ pip install --upgrade pip
         exit 0
     }
 
-# prep bazel
-apt-get update
-apt-get install -y npm
+# prep bazel, use Node.js LTS
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+apt-get install -y nodejs
 npm install -g @bazel/bazelisk
 
 # fetch and optionally patch Ray

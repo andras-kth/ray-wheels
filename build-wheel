@@ -32,13 +32,6 @@ patches=/patches
 # inside container, upgrade pip
 pip install --upgrade pip
 
-# don't bother rebuilding existing wheels
-! pip download --no-deps ray==$RAY ||
-    {
-        ls -l ray*whl
-        exit 0
-    }
-
 # prep bazel, use Node.js LTS
 curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 apt-get install -y nodejs

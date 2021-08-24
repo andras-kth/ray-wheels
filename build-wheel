@@ -6,27 +6,29 @@ set -ex
 [ / = "${0::1}" ] || exec "$0" "$@"
 
 self=${0##*/}
-wheels=/wheels
-patches=/patches
+host=/host
+patches=$host/patches
+build=$host/$self
 
 # run ourselves in a container, unless already inside
-[ /$self = "$0" ] ||
+[ $build = "$0" ] ||
     {
         ! [ - = "${1::1}" ] ||
             {  # clue in the clueless
                 echo Usage: $self [RAY_VERSION [DOCKER_IMAGE]]
                 exit 1
             }
+        # grab "default" versions from README.md
+        RAY=$(sed -n '/Ray version/s/.*(`\([^`]*\)`.*/\1/p' README.md)
+        PY=$(sed -n 's/.*Python \([^ ]*\) is used by default/\1/p' README.md)
         # spawn container
         exec docker run \
             --rm \
             --tty \
             --interactive \
-            --volume "$0":/$self \
-            --volume "$PWD$wheels":$wheels \
-            --volume "$PWD$patches":$patches \
-            --env RAY=${1:-1.5.2} \
-            python:${2:-3.8} /$self
+            --volume "$PWD":$host \
+            --env RAY=${1:-$RAY} \
+            python:${2:-$PY} $build
     }
 
 # inside container, upgrade pip
@@ -53,4 +55,4 @@ npm run build
 # build wheel
 cd /ray/python/
 python setup.py bdist_wheel
-mv -v dist/ray*whl $wheels
+mv -v dist/ray*whl $host

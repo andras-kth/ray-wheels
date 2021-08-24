@@ -22,11 +22,12 @@ top="$(git rev-parse --show-toplevel 2>/dev/null)" ||
 cd "$top"
 
 stashed=$(git stash)
-cp -va wheels wheels.
 git switch gh-pages
-dir2pi -S wheels.
-cp -va wheels./simple/* .
-rm -fr wheels.
+# move `index.html` out of the way to avoid `dir2pi` choking
+rm index.html
+dir2pi .
+# restore `index.html`
+git restore index.html
 git add .
 git commit -am Update\ Pages
 git push

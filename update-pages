@@ -23,6 +23,7 @@ cd "$top"
 
 stashed=$(git stash)
 git switch gh-pages
+git pull
 # move `index.html` out of the way to avoid `dir2pi` choking
 rm index.html
 dir2pi .

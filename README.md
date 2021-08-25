@@ -24,7 +24,7 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
       * Python 3.8 is used by default
 1.  Update the `gh-pages` branch (a simple repo hosted on GitHub Pages)
     ```sh
-    ./updates-pages
+    ./update-pages
     ```
 1.  [OPTIONAL] File a [Pull Request](https://github.com/mehes-kth/ray-wheels/pulls) for `gh-pages`
 

@@ -47,7 +47,11 @@ git clone -b ray-$RAY https://github.com/ray-project/ray
     done
 
 # build dashboard frontend
-cd /ray/python/ray/new_dashboard/client
+new() {
+    local newer=($(printf 1.6.0\\n$RAY | sort -rV))
+    ! [ 1.6.0 = "$newer" ] || echo new_
+}
+cd /ray/python/ray/$(new)dashboard/client
 npm install
 npm ci
 npm run build

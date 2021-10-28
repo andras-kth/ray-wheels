@@ -15,7 +15,7 @@ build=$host/$self
     {
         ! [ - = "${1::1}" ] ||
             {  # clue in the clueless
-                echo Usage: $self [RAY_VERSION [DOCKER_IMAGE]]
+                echo Usage: $self [RAY_VERSION [PYTHON_VERSION]]
                 exit 1
             }
         # grab "default" versions from README.md

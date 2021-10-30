@@ -41,9 +41,10 @@ npm install -g @bazel/bazelisk
 
 # fetch and optionally patch Ray
 git clone -b ray-$RAY https://github.com/ray-project/ray
+commit="$(cd ray && git rev-parse HEAD)"
 ! [ -d $patches/$RAY ] ||
     for patch in $patches/$RAY/*.patch
-    do patch -p1 < $patch
+    do patch -p1 < $patch && commit+=+
     done
 
 # build dashboard frontend
@@ -58,5 +59,6 @@ npm run build
 
 # build wheel
 cd /ray/python/
+sed -i s/{{RAY_COMMIT_SHA}}/$commit/ ray/__init__.py
 python setup.py bdist_wheel
 mv -v dist/ray*whl $host

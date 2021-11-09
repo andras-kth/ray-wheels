@@ -21,7 +21,7 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
       ./build-wheel R.r.i P.p
       ```
       * Passing an explicit Python version (e.g. `P.p`) is OPTIONAL
-      * Python 3.8 is used by default
+      * Python 3.9 is used by default
 1.  Update the `gh-pages` branch (a simple repo hosted on GitHub Pages)
     ```sh
     ./update-pages

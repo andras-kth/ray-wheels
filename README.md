@@ -26,9 +26,9 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
     ```sh
     ./update-pages
     ```
-1.  [OPTIONAL] File a [Pull Request](https://github.com/mehes-kth/ray-wheels/pulls) for `gh-pages`
+1.  [OPTIONAL] File a [Pull Request](https://github.com/andras-kth/ray-wheels/pulls) for `gh-pages`
 
 
 To use a non-standard wheel from this repo, but fall back to PyPi on platforms
 where standard wheels are available, set `--extra-index-url` or `PIP_EXTRA_INDEX_URL`
-to [`https://mehes-kth.github.io/ray-wheels/simple`](https://mehes-kth.github.io/ray-wheels/simple).
+to [`https://mehes-kth.github.io/ray-wheels/simple`](https://andras-kth.github.io/ray-wheels/simple).

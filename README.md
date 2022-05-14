@@ -5,7 +5,7 @@ Non-standard wheels for [ray-project/ray](https://github.com/ray-project/ray).
 ## Modus Operandi
 
 1.  Pick Ray version (say, `R.r.i`)
-    - the latest Ray version (`1.8.0` at the time last checked)  is used by default
+    - the latest Ray version (`1.12.0` at the time last checked)  is used by default
 1.  [OPTIONAL] Add patches, if any, under `patches/R.r.i`
 1.  Build the wheel (the resulting wheel, if produced, ends up in the current directory)
     - latest
